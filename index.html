@@ -42,6 +42,15 @@
         <p>
           <a href="https://scholar.google.com/citations?user=Ry0Bdt8AAAAJ&hl=en">Google Scholar</a>
         </p>
+        <p>
+          <a href="xwuShirley.pdf" target="_blank" onclick="countDownload()">Download CV (PDF)</a>
+          <br>
+          <small>
+            Page views: <span id="pageviews">...</span> |
+            CV downloads: <span id="downloads">...</span>
+          </small>
+        </p>
+
       </td>
     </tr>
     </tbody>
@@ -310,6 +319,33 @@
   ga('send', 'pageview')
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async></script>
+
+<script>
+  // Page views
+  fetch('https://api.countapi.xyz/hit/xiaoxiawu.github.io/homepage')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('pageviews').innerText = data.value;
+    });
+
+  // CV download function
+  function countDownload() {
+    fetch('https://api.countapi.xyz/hit/xiaoxiawu.github.io/cv_download')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('downloads').innerText = data.value;
+      });
+  }
+
+  // Show current download count
+  fetch('https://api.countapi.xyz/get/xiaoxiawu.github.io/cv_download')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('downloads').innerText = data.value;
+    });
+</script>
+
 </body>
+
 
 </html>
